@@ -113,5 +113,3 @@ Please contact me using the following links:
 }
 
 module.exports = generateMarkdown;
-
-module.exports = generateMarkdown;
