@@ -140,6 +140,19 @@ const questions = [
             }
         }
     },
+    {
+        type: 'input',
+        name: 'test',
+        message: 'Please provide instructions on how to test the app. (Required)',
+        validate: testInput => {
+            if (testInput) {
+                return true;
+            } else {
+                console.log('Please enter your use test instructions!');
+                return false;
+            }
+        }
+    }
 
 ];
 // TODO: Create a function to write README file
