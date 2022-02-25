@@ -155,11 +155,43 @@ const questions = [
     }
 
 ];
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+// function to write the Readme files
+const writeFile = fileContent => {
+    return new Promise((resolve, reject) => {
+        fs.writeFile('./generated-readme.md', fileContent, err => {
+            if (err) {
+                reject(err);
+                return;
+            }
 
-// TODO: Create a function to initialize app
-function init() {}
+            resolve({
+                ok: true,
+                message: 'File created!'
+            });
+        });
+    });
+};
+// function to prompt the questions as well as storing the user input
+const init = () => {
+
+    return inquirer.prompt(questions)
+    .then(readmeData => {
+        return readmeData;
+    })
+}
 
 // Function call to initialize app
-init();
+init()
+.then(readmeData => {
+    console.log(readmeData);
+    return generateMarkdown(readmeData);
+})
+.then(pageMD => {
+    return writeFile(pageMD);
+})
+.then(writeFileResponse => {
+    console.log(writeFileResponse.message);
+})
+.catch(err => {
+    console.log(err);
+})
