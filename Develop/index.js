@@ -108,6 +108,18 @@ const questions = [
             }
         }
     },
+    {
+        type: 'list',
+        name: 'license',
+        message: 'Which license will you use for your project?',
+        choices: ['agpl', 'apache', 'mit', 'no license']
+    },
+    {
+        type: 'confirm',
+        name: 'confirmContributers',
+        message: 'Would you like to allow others to contribute?',
+        default: true
+    },
 
 ];
 // TODO: Create a function to write README file
