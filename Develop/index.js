@@ -56,6 +56,32 @@ const questions = [
             }
         }
     },
+    {
+        type: 'input',
+        name: 'why',
+        message: 'Why did you create this project? (Required)',
+        validate: whyInput => {
+            if (whyInput) {
+                return true;
+            } else {
+                console.log('Please enter why you created this project!');
+                return false;
+            }
+        }
+    },
+    {
+        type: 'input',
+        name: 'how',
+        message: 'How will someone use this? (Required)',
+        validate: howInput => {
+            if (howInput) {
+                return true;
+            } else {
+                console.log('Please enter what your project is!');
+                return false;
+            }
+        }
+    },
 
 ];
 // TODO: Create a function to write README file
