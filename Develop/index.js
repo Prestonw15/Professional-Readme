@@ -120,6 +120,26 @@ const questions = [
         message: 'Would you like to allow others to contribute?',
         default: true
     },
+    {
+        type: 'input',
+        name: 'contribute',
+        message: 'Please provide guidelines for contributing. (Required)',
+        when: ({ confirmContributers }) => {
+            if (confirmContributers) {
+                return true;
+            } else {
+                return false;
+            }
+        },
+        validate: contributerInput => {
+            if (contributerInput) {
+                return true;
+            } else {
+                console.log('Please enter contributer guidelines!');
+                return false;
+            }
+        }
+    },
 
 ];
 // TODO: Create a function to write README file
