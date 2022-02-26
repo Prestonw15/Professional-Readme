@@ -22,7 +22,7 @@ const promptProject = () => {
         },
         {
             type: 'input',
-            name: 'projectDescription',
+            name: 'description',
             message: 'Write a summary of what your project is. (Required)',
             validate: nameInput => {
                 if (nameInput) {
@@ -35,13 +35,13 @@ const promptProject = () => {
         },
         {
          type: 'checkbox',
-         name: 'projectLanguages',
+         name: 'languages',
          message: 'What Languages did you use in your application?',
          choices: ['Javascript', 'CSS', 'HTML', 'Node']   
         },
         {
          type: 'input',
-         name: 'Packages',
+         name: 'packages',
          message: 'What packages or installations will be needed?'   
         },
         {
@@ -51,13 +51,18 @@ const promptProject = () => {
         },
         {
          type: 'input',
-         name: 'userContribution',
+         name: 'contribution',
          message: 'How can someone contribute?'
         },
         {
          type: 'input',
          name: 'credit',
          message: 'Who worked on this project?'
+        },
+        {
+         type: 'input',
+         name: 'test',
+         message: 'Will there be any tests?'
         },
         {
          type: 'list',
@@ -71,11 +76,6 @@ const promptProject = () => {
              'MIT',
              'Open',
          ]
-        },
-        {
-         type: 'input',
-         name: 'tests',
-         message: 'Are there any tests?',
         },
         {
          type: 'input',
