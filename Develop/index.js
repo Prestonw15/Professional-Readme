@@ -1,7 +1,8 @@
 // TODO: Include packages needed for this application
 const fs = require('fs');
 const inquirer = require('inquirer');
-const generateMarkdown = require('./utils/generateMarkdown.js');
+
+const { generateMarkdown } = require('./utils/generateMarkdown.js');
 // TODO: Create an array of questions for user input
 
 const promptProject = () => {
@@ -99,7 +100,7 @@ const writeFile = (fileName, data) => {
         console.log('Your file has been created!')
     })
 }
-// function to prompt the questions as well as storing the user input
+// function to initialize the application
 function init() {
     promptProject()
     .then(input =>{
