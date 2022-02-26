@@ -10,7 +10,7 @@ const promptProject = () => {
     return inquirer.prompt([
         {
             type: 'input',
-            name: 'projectTitle',
+            name: 'title',
             message: 'Title of your project?',
             validate: nameInput => {
                 if (nameInput) {
