@@ -1,46 +1,118 @@
 // TODO: Include packages needed for this application
+const fs = require('fs');
 const inquirer = require('inquirer');
 const generateMarkdown = require('./utils/generateMarkdown.js');
-const fs = require('fs');
 // TODO: Create an array of questions for user input
 
-// function to write the Readme files
-const writeFile = fileContent => {
-    return new Promise((resolve, reject) => {
-        fs.writeFile('./dist/generated-README.md', fileContent, err => {
-            if (err) {
-                reject(err);
-                return;
+const promptProject = () => {
+
+    return inquirer.prompt([
+        {
+            type: 'input',
+            name: 'projectTitle',
+            message: 'Title of your project?',
+            validate: nameInput => {
+                if (nameInput) {
+                    return true;
+                } else {
+                    console.log('Please enter your project title!');
+                    return false;
+                }
             }
-
-            resolve({
-                ok: true,
-                message: 'File created!'
-            });
-        });
-    });
+        },
+        {
+            type: 'input',
+            name: 'projectDescription',
+            message: 'Write a summary of what your project is. (Required)',
+            validate: nameInput => {
+                if (nameInput) {
+                    return true;
+                } else {
+                    console.log('Please enter a Description of your Project');
+                    return false;
+                }
+            }
+        },
+        {
+         type: 'checkbox',
+         name: 'projectLanguages',
+         message: 'What Languages did you use in your application?',
+         choices: ['Javascript', 'CSS', 'HTML', 'Node']   
+        },
+        {
+         type: 'input',
+         name: 'Packages',
+         message: 'What packages or installations will be needed?'   
+        },
+        {
+         type: 'input',
+         name: 'usage',
+         message: 'What will this project be used for?'   
+        },
+        {
+         type: 'input',
+         name: 'userContribution',
+         message: 'How can someone contribute?'
+        },
+        {
+         type: 'input',
+         name: 'credit',
+         message: 'Who worked on this project?'
+        },
+        {
+         type: 'list',
+         name: 'license',
+         message: 'Select the License for this project?',
+         choices: [
+             'Apache',
+             'GNU',
+             'GPL',
+             'ISC',
+             'MIT',
+             'Open',
+         ]
+        },
+        {
+         type: 'input',
+         name: 'tests',
+         message: 'Are there any tests?',
+        },
+        {
+         type: 'input',
+         name: 'github',
+         message: 'Please enter you Github username'
+        },
+        {
+         type: 'input',
+         name: 'email',
+         message: 'Please enter your email:'
+        }
+    ])
 };
-// function to prompt the questions as well as storing the user input
-const init = () => {
+// function to write the Readme files
+const writeFile = (fileName, data) => {
 
-    return inquirer.prompt(questions)
-    .then(readmeData => {
-        return readmeData;
+    fs.writeFile(fileName, data, err => {
+        if (err) {
+            return console.log(err);
+        }
+        console.log('Your file has been created!')
+    })
+}
+// function to prompt the questions as well as storing the user input
+function init() {
+    promptProject()
+    .then(input =>{
+        return generateMarkdown(input);
+    })
+    .then(markdown => {
+        writeFile('readMe.md', markdown);
+    })
+    .catch(err => {
+        console.log(err);
     })
 }
 
 // Function call to initialize app
-init()
-.then(readmeData => {
-    console.log(readmeData);
-    return generateMarkdown(readmeData);
-})
-.then(pageMD => {
-    return writeFile(pageMD);
-})
-.then(writeFileResponse => {
-    console.log(writeFileResponse.message);
-})
-.catch(err => {
-    console.log(err);
-})
+init();
+
