@@ -1,23 +1,14 @@
 {
   "name": "readme-generator",
   "version": "1.0.0",
-  "description": "a node application that creates a professional readme based on user criteria input.",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://prestonw15.github.io/Professional-Readme.git"
-  },
-  "author": "Preston Watson",
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://prestonw15.github.io/Professional-Readme/issues"
-  },
-  "homepage": "https://prestonw15.github.io/Professional-Readme#readme",
   "dependencies": {
-    "inquirer": "^8.1.1",
-    "node.js": "^0.0.1-security"
+    "inquirer": "^6.3.1"
   }
 }
